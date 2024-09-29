@@ -1,0 +1,53 @@
+From 9156f8dea28814793759f1c5c6a8a00b8d93417c Mon Sep 17 00:00:00 2001
+From: wjyrich <1071633242@qq.com>
+Date: Sat, 7 Sep 2024 16:26:27 +0800
+Subject: [PATCH] install
+
+---
+ CMakeLists.txt                  | 8 +++++++-
+ bundle/linux/amphetype2.desktop | 4 ++--
+ 2 files changed, 9 insertions(+), 3 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 312e26b..ea54aee 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -9,7 +9,7 @@ add_definitions(-DQT_MESSAGELOGCONTEXT -DQS_LOG_LINE_NUMBERS -DQS_LOG_SEPARATE_T
+ find_package(Git)
+ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
+ set(VERSION_UPDATE_FROM_GIT true)
+-include(GetVersionFromGitTag)
++#include(GetVersionFromGitTag)
+ 
+ list(APPEND CMAKE_PREFIX_PATH ${QTROOT})
+ 
+@@ -25,5 +25,11 @@ enable_testing()
+ 
+ add_subdirectory(external)
+ add_subdirectory(src)
++install(TARGETS ${PROJECT_NAME}
++             DESTINATION bin)
++install(FILES bundle/linux/amphetype2.png
++        DESTINATION share/icons)
+ 
++install(FILES bundle/linux/amphetype2.desktop
++            DESTINATION share/applications)
+ add_subdirectory(test)
+\ No newline at end of file
+diff --git a/bundle/linux/amphetype2.desktop b/bundle/linux/amphetype2.desktop
+index 05c4949..6e485fd 100644
+--- a/bundle/linux/amphetype2.desktop
++++ b/bundle/linux/amphetype2.desktop
+@@ -4,6 +4,6 @@ Type=Application
+ Name=amphetype2
+ GenericName=Typing Trainer
+ Comment=Practice typing
+-Exec=AppRun %F
+-Icon=icon
++Exec=amphetype2 %F
++Icon=amphetype2
+ Categories=Education;Office;
+\ No newline at end of file
+-- 
+2.43.4
+
